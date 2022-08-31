@@ -1,5 +1,10 @@
+import pickle
+
 from modules.budget import Budget
 
+# with open("entries.pkl", 'wb') as file:
+#     empt = ''
+#     pickle.dump(empt, file)
 budget = Budget()
 
 while True:
@@ -8,7 +13,8 @@ while True:
     2) Remove money
     3) Check balance
     4) Check log
-    5) Exit
+    5) Clear log
+    6) Exit
     """)
     if procedure == '1':
         budget.add_entry(int(input('Enter amount to add: ')))
@@ -17,7 +23,11 @@ while True:
     if procedure == '3':
         print(budget.get_balance())
     if procedure == '4':
-        print(budget.check_log())
+        budget.check_log()
     if procedure == '5':
+        with open("entries.pkl", "wb") as file:
+            clear = ''
+            pickle.dump('', file)
+    if procedure == '6':
         print('Thank you, bye!')
         break
